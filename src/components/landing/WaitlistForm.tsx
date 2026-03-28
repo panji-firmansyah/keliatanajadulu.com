@@ -24,7 +24,8 @@ export function WaitlistForm({ id, variant = "light" }: WaitlistFormProps) {
   const [status, setStatus] = useState<"idle" | "success" | "duplicate">("idle");
   
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(formSchema as any),
     defaultValues: { email: "" },
   });
 

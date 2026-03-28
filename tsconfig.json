@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "api/**/*", "db/**/*", "vite.config.ts", "drizzle.config.ts"],
+  "include": ["src/**/*", "api/**/*", "lib/**/*", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

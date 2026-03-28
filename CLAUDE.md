@@ -6,7 +6,7 @@ Coming soon landing page + waitlist for "Keliatan Aja Dulu" — a low-cost digit
 ## Tech Stack
 - **Frontend**: React 19, Vite, Tailwind CSS v4, Framer Motion, Radix UI
 - **API**: Vercel Serverless Functions (TypeScript)
-- **Database**: PostgreSQL via Neon (`@neondatabase/serverless`) + Drizzle ORM
+- **Database**: Supabase PostgreSQL (`@supabase/supabase-js`)
 - **Deployment**: Vercel
 
 ## Directory Structure
@@ -20,9 +20,8 @@ api/              # Vercel serverless functions
   waitlist.ts     # POST /api/waitlist
   waitlist/
     count.ts      # GET /api/waitlist/count
-db/               # Drizzle ORM schema + connection
-  index.ts        # DB connection (Neon serverless)
-  schema/         # Table definitions
+lib/
+  supabase.ts     # Supabase client init
 ```
 
 ## Local Development
@@ -33,13 +32,12 @@ vercel dev        # Full stack with API functions
 ```
 
 ## Environment Variables
-- `DATABASE_URL` — Neon PostgreSQL connection string (required for API functions)
+- `SUPABASE_URL` — Supabase project URL (required for API functions)
+- `SUPABASE_SERVICE_ROLE_KEY` — Supabase service role key (required for API functions)
 
 ## Database
-```bash
-pnpm db:push      # Push schema to database
-pnpm db:studio    # Open Drizzle Studio
-```
+Tables are managed via Supabase dashboard (supabase.com), not in code.
+Current tables: `waitlist_entries` (in Supabase project "gt-tools")
 
 ## Key Patterns
 - All content is in Indonesian (Bahasa Indonesia)

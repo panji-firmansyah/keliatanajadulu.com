@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { db } from "../../db/index.js";
-import { waitlistEntriesTable } from "../../db/schema/index.js";
-import { count } from "drizzle-orm";
+import { supabase } from "../../lib/supabase.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET") {
@@ -9,11 +7,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const [{ value }] = await db
-      .select({ value: count() })
-      .from(waitlistEntriesTable);
+    const { count } = await supabase
+      .from("waitlist_entries")
+      .select("*", { count: "exact", head: true });
 
-    return res.json({ count: Number(value) });
+    return res.json({ count: count ?? 0 });
   } catch (err) {
     console.error("Failed to get waitlist count:", err);
     return res.status(500).json({ count: 0 });
