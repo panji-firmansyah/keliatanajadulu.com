@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { db } from "../../db";
-import { waitlistEntriesTable } from "../../db/schema";
+import { db } from "../../db/index.js";
+import { waitlistEntriesTable } from "../../db/schema/index.js";
 import { count } from "drizzle-orm";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
