@@ -75,7 +75,7 @@ export function ProblemSection() {
               variants={itemVariants}
               className="min-w-[280px] sm:min-w-0 bg-white rounded-2xl p-8 shadow-sm border border-border/50 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 snap-center group"
             >
-              <div className="text-5xl mb-6 bg-background-warm w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+              <div className="text-5xl mb-6 bg-background-warm w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300" role="img" aria-label={problem.title}>
                 {problem.emoji}
               </div>
               <h3 className="font-display font-bold text-xl text-secondary mb-3">

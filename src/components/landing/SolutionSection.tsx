@@ -64,7 +64,7 @@ export function SolutionSection() {
               className="relative flex flex-col sm:flex-row gap-4 sm:gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border/50 hover:shadow-md hover:border-primary/30 transition-all duration-300 group"
             >
               <div className="shrink-0 relative z-10">
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-background-warm flex items-center justify-center text-2xl md:text-3xl shadow-inner border border-white group-hover:bg-primary/20 transition-colors">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-background-warm flex items-center justify-center text-2xl md:text-3xl shadow-inner border border-white group-hover:bg-primary/20 transition-colors" role="img" aria-label={feature.title}>
                   {feature.emoji}
                 </div>
               </div>

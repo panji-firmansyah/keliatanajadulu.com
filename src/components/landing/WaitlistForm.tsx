@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti";
 import { Loader2, ArrowRight, Share2, CheckCircle2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
@@ -59,7 +58,8 @@ export function WaitlistForm({ id, variant = "light" }: WaitlistFormProps) {
     },
   });
 
-  const triggerConfetti = () => {
+  const triggerConfetti = async () => {
+    const { default: confetti } = await import("canvas-confetti");
     const end = Date.now() + 2 * 1000;
     const colors = ['#FBBF24', '#F97316', '#22C55E', '#1E293B'];
 
@@ -110,13 +110,17 @@ export function WaitlistForm({ id, variant = "light" }: WaitlistFormProps) {
           >
             <div className={`flex flex-col sm:flex-row gap-2 ${isDark ? 'sm:bg-white/10 sm:p-1.5 sm:rounded-full' : ''}`}>
               <div className="relative flex-grow">
+                <label htmlFor={`${id}-email`} className="sr-only">Alamat email</label>
                 <Input
                   {...form.register("email")}
+                  id={`${id}-email`}
                   type="email"
                   placeholder="Alamat email kamu"
-                  className={`w-full h-12 px-5 rounded-full outline-none transition-all duration-200 ${
-                    isDark 
-                      ? 'bg-white/10 sm:bg-transparent border-white/20 text-white placeholder:text-white/50 focus:border-primary focus:bg-white/15' 
+                  aria-describedby={form.formState.errors.email ? `${id}-error` : undefined}
+                  aria-invalid={form.formState.errors.email ? true : undefined}
+                  className={`w-full h-12 px-5 rounded-full outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                    isDark
+                      ? 'bg-white/10 sm:bg-transparent border-white/20 text-white placeholder:text-white/50 focus:border-primary focus:bg-white/15'
                       : 'bg-white border-border/80 text-secondary focus:border-primary focus:ring-4 focus:ring-primary/10 shadow-sm'
                   } ${form.formState.errors.email ? 'border-destructive focus:border-destructive focus:ring-destructive/10' : ''}`}
                   disabled={joinMutation.isPending}
@@ -125,7 +129,7 @@ export function WaitlistForm({ id, variant = "light" }: WaitlistFormProps) {
               <Button
                 type="submit"
                 disabled={joinMutation.isPending}
-                className={`h-12 px-6 rounded-full font-semibold transition-all duration-200 group ${
+                className={`h-12 px-6 rounded-full font-semibold transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                   isDark
                     ? 'bg-primary hover:bg-primary-hover text-secondary w-full sm:w-auto'
                     : 'bg-primary hover:bg-primary-hover text-secondary shadow-md hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto'
@@ -145,7 +149,9 @@ export function WaitlistForm({ id, variant = "light" }: WaitlistFormProps) {
               </Button>
             </div>
             {form.formState.errors.email && (
-              <motion.p 
+              <motion.p
+                id={`${id}-error`}
+                role="alert"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 className={`text-sm text-left pl-4 ${isDark ? 'text-red-300' : 'text-destructive'}`}

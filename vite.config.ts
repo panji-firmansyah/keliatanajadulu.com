@@ -14,5 +14,15 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "wouter"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-ui": ["lucide-react"],
+          "vendor-form": ["@tanstack/react-query", "react-hook-form", "@hookform/resolvers", "zod"],
+        },
+      },
+    },
   },
 });

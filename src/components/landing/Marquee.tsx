@@ -14,7 +14,7 @@ export function Marquee() {
   const marqueeItems = [...items, ...items, ...items];
 
   return (
-    <div className="w-full overflow-hidden bg-secondary py-4 relative flex items-center shadow-inner">
+    <div className="w-full overflow-hidden bg-secondary py-4 relative flex items-center shadow-inner" role="marquee" aria-label="Layanan: Google Business Setup, Website Profesional, Review Otomatis, Google Maps, WhatsApp Integration, SEO Lokal">
       <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-secondary to-transparent z-10"></div>
       <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-secondary to-transparent z-10"></div>
       

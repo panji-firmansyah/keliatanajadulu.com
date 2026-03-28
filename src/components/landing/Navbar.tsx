@@ -36,7 +36,7 @@ export function Navbar() {
           transition={{ duration: 0.5 }}
           className="flex items-center"
         >
-          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="group">
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-sm" aria-label="Keliatan Aja Dulu — Kembali ke atas">
             <span className="font-display font-bold text-xl md:text-2xl text-secondary tracking-tight">
               <span className="relative inline-block">
                 Keliatan
@@ -57,7 +57,7 @@ export function Navbar() {
             >
               <Button 
                 onClick={scrollToWaitlist}
-                className="bg-primary hover:bg-primary-hover text-secondary font-semibold rounded-full px-6 py-2 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200"
+                className="bg-primary hover:bg-primary-hover text-secondary font-semibold rounded-full px-6 py-2 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               >
                 Gabung Waitlist
               </Button>
